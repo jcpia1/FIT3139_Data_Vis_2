@@ -1,0 +1,73 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Bushfires in Australia",
+  "width": 800,
+  "height": 500,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/jcpia1/HW_Week10/main/Data/geodata.json",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_10m_admin_1_states_provinces"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#ccc",
+        "stroke": "white"
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/jcpia1/HW_Week10/main/Data/bushfire_data.json",
+        "format": {
+          "type": "topojson",
+          "feature": "Historical_Bushfire_Boundaries"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#FF5733",
+        "fillOpacity": 0.8
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "properties.ignition_date",
+            "type": "temporal",
+            "title": "Ignition Date"
+          },
+          {
+            "field": "properties.extinguish_date",
+            "type": "temporal",
+            "title": "Extinguish Date"
+          },
+          {
+            "field": "properties.fire_type",
+            "type": "nominal",
+            "title": "Fire Type"
+          },
+          {
+            "field": "properties.area_ha",
+            "type": "quantitative",
+            "title": "Area (ha)"
+          },
+          {
+            "field": "properties.perim_km",
+            "type": "quantitative",
+            "title": "Perimeter (km)"
+          },
+          {
+            "field": "properties.state",
+            "type": "nominal",
+            "title": "State"
+          }
+        ]
+      }
+    }
+  ]
+}
