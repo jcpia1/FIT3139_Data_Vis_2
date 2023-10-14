@@ -1,0 +1,242 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Bushfires in Australia",
+  "vconcat": [
+    {
+      "title": "Bushfires in Australia by Total Area",
+      "width": 800,
+      "height": 500,
+      "projection": {
+        "type": "mercator"
+      },
+      "data": {
+        "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/geodata.json",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_10m_admin_1_states_provinces"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "properties.gns_name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
+            },
+            "key": "state",
+            "fields": ["ignition_date", "fire_type", "area_ha", "state"]
+          }
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "geoshape"
+          }
+        },
+        {
+          "mark": "text",
+          "transform": [
+            {
+              "lookup": "properties.gns_name",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
+                },
+                "key": "state",
+                "fields": ["ignition_date", "fire_type", "area_ha", "state"]
+              }
+            },
+            {
+              "calculate": "year(datum.ignition_date)",
+              "as": "year"
+            },
+            {
+              "filter": "selectedYear === 2021 || datum.year === selectedYear"
+            },
+            {
+              "filter": "selectedFireType === 'All' || datum.fire_type === selectedFireType"
+            },
+            {
+              "aggregate": [
+                {
+                  "op": "count",
+                  "field": "state",
+                  "as": "count"
+                },
+                {
+                  "op": "sum",
+                  "field": "area_ha",
+                  "as": "total_area"
+                }
+              ],
+              "groupby": ["state"]
+            }
+          ],
+          "encoding": {
+            "longitude": {
+              "field": "longitude",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "latitude",
+              "type": "quantitative"
+            },
+            "text": {
+              "condition": {
+                "test": "datum.count == 0",
+                "value": "No data available"
+              },
+              "field": "state",
+              "type": "nominal"
+            }
+          }
+        },        
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
+          },
+          "transform": [
+            {
+              "calculate": "year(datum.ignition_date)",
+              "as": "year"
+            },
+            {
+              "filter": "selectedYear === 2021 || datum.year === selectedYear"
+            },
+            {
+              "filter": "selectedFireType === 'All' || datum.fire_type === selectedFireType"
+            },
+            {
+              "aggregate": [
+                {
+                  "op": "sum",
+                  "field": "area_ha",
+                  "as": "total_area"
+                },
+                {
+                  "op": "count",
+                  "as": "count"
+                }
+              ],
+              "groupby": ["state"]
+            },
+            {
+              "lookup": "state",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/geodata.json",
+                  "format": {
+                    "type": "topojson",
+                    "feature": "ne_10m_admin_1_states_provinces"
+                  }
+                },
+                "key": "properties.gns_name"
+              },
+              "as": "geo"
+            }
+          ],
+          "mark": {
+            "type": "geoshape"
+          },
+          "encoding": {
+            "shape": {
+              "field": "geo",
+              "type": "geojson"
+            },
+            "color": {
+              "field": "total_area",
+              "type": "quantitative",
+              "scale": {
+                "scheme": "orangered",
+                "clamp": true
+              },
+              "legend":{
+                "title": "Total Area (ha)",
+                "tickCount": 5
+              }
+            },
+            "tooltip": [
+              {"field": "state", "type": "nominal", "title": "State"},
+              {"field": "count", "type": "quantitative", "title": "Number of Bushfires"},
+              {"field": "total_area", "type": "quantitative", "title": "Total Area Burned (ha)"}
+            ]     
+          }
+        }
+      ]
+    },
+    {
+      "title": "Bushfires Count by State",
+      "width": 800,
+      "height": 300,
+      "data": {
+        "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
+      },
+      "transform": [
+        {
+          "calculate": "year(datum.ignition_date)",
+          "as": "year"
+        },
+        {
+          "filter": "datum.year === selectedYear"
+        },
+        {
+          "filter": "selectedFireType === 'All' || datum.fire_type === selectedFireType"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "count",
+              "as": "count"
+            }
+          ],
+          "groupby": ["state"]
+        }
+      ],
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "state",
+          "type": "ordinal",
+          "axis": {
+            "labelAngle": -45
+          }
+        },
+        "y": {
+          "field": "count",
+          "type": "quantitative",
+          "title": "Number of Bushfires",
+          "axis": {
+            "tickCount": 5
+          }
+        },
+        "color": {
+          "field": "state",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "params": [
+    {
+      "name": "selectedYear",
+      "value": 2000,
+      "bind": {
+        "input": "range",
+        "min": 1940,
+        "max": 2021,
+        "step": 1,
+        "name": "Select Year"
+      }
+    },
+    {
+      "name": "selectedFireType",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "Bushfire", "Prescribed Burn"],
+        "name": "Fire Type"
+      }
+    }
+  ]
+}
