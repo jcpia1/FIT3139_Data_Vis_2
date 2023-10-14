@@ -15,13 +15,13 @@
   },
   "transform": [
     {
-      "lookup": "properties.gns_name",
+      "lookup": "properties.name",
       "from": {
         "data": {
           "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
         },
         "key": "state",
-        "fields": ["state", "total_area"]
+        "fields": ["ignition_date", "fire_type", "area_ha", "state"]
       }
     }
   ],
@@ -30,7 +30,8 @@
   },
   "encoding": {
     "color": {
-      "field": "total_area",
+      "aggregate": "sum",
+      "field": "area_ha",
       "type": "quantitative",
       "scale": {
         "scheme": "reds"
@@ -46,7 +47,8 @@
         "title": "State"
       },
       {
-        "field": "total_area",
+        "aggregate": "sum",
+        "field": "area_ha",
         "type": "quantitative",
         "title": "Total Area (ha)"
       }
