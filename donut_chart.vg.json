@@ -3,7 +3,17 @@
   "data": {
     "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
   },
-  "transform": [
+  "params": [
+    {
+      "name": "equalAngles",
+      "value": false,
+      "bind": {
+        "input": "checkbox",
+        "name": "Display Equal Angles"
+      }
+    }
+  ],
+ "transform": [
     {
       "aggregate": [
         {"op": "count", "as": "Number_of_Fires"},
@@ -18,7 +28,8 @@
         {"op": "sum", "field": "Number_of_Fires", "as": "Total_Fires"},
         {"op": "sum", "field": "Area_Burned", "as": "Total_Area"},
         {"op": "sum", "field": "Average_Area_Burned", "as": "Total_Avg_Area"},
-        {"op": "sum", "field": "Largest_Area_Burned", "as": "Total_Largest_Area"}
+        {"op": "sum", "field": "Largest_Area_Burned", "as": "Total_Largest_Area"},
+        {"op": "max", "field": "Largest_Area_Burned", "as": "Max_Largest_Area"}
       ]
     },
     {
@@ -38,6 +49,26 @@
       "as": "Normalized_Largest_Area"
     },
     {
+      "calculate": "datum.Total_Area / datum.Total_Fires",
+      "as": "Overall_Average_Area"
+    },
+    {
+      "calculate": "equalAngles ? 1 : datum.Number_of_Fires",
+      "as": "Theta_Number_of_Fires"
+    },
+    {
+      "calculate": "equalAngles ? 1 : datum.Area_Burned",
+      "as": "Theta_Area_Burned"
+    },
+    {
+      "calculate": "equalAngles ? 1 : datum.Average_Area_Burned",
+      "as": "Theta_Average_Area_Burned"
+    },
+    {
+      "calculate": "equalAngles ? 1 : datum.Largest_Area_Burned",
+      "as": "Theta_Largest_Area_Burned"
+    },
+    {
       "lookup": "state",
       "from": {
         "data": {
@@ -55,7 +86,10 @@
           "title": "Number of Fires",
           "mark": "arc",
           "encoding": {
-            "theta": {"field": "Number_of_Fires", "type": "quantitative"},
+            "theta": {
+              "field": "Theta_Number_of_Fires",
+              "type": "quantitative"
+            },
             "color": {
               "field": "state",
               "type": "nominal",
@@ -78,7 +112,20 @@
             "align": "center",
             "baseline": "middle",
             "fontSize": 12,
-            "fontWeight": "bold"
+            "fontWeight": "bold",
+            "dy": -7
+          },
+          "encoding": {
+            "text": {"value": "Total"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "middle",
+            "fontSize": 12,
+            "dy": 7
           },
           "encoding": {
             "text": {
@@ -96,7 +143,10 @@
           "title": "Area Burned (ha)",
           "mark": "arc",
           "encoding": {
-            "theta": {"field": "Area_Burned", "type": "quantitative"},
+            "theta": {
+              "field": "Theta_Area_Burned",
+              "type": "quantitative"
+            },
             "color": {
               "field": "state",
               "type": "nominal"
@@ -114,12 +164,24 @@
             "align": "center",
             "baseline": "middle",
             "fontSize": 12,
-            "fontWeight": "bold"
+            "fontWeight": "bold",
+            "dy": -7
+          },
+          "encoding": {
+            "text": {"value": "Total"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "middle",
+            "fontSize": 12,
+            "dy": 7
           },
           "encoding": {
             "text": {
-              "aggregate": "sum",
-              "field": "Area_Burned",
+              "field": "Total_Area",
               "type": "quantitative",
               "format": ",.0f"
             }
@@ -133,7 +195,10 @@
           "title": "Average Area Burned (ha)",
           "mark": "arc",
           "encoding": {
-            "theta": {"field": "Average_Area_Burned", "type": "quantitative"},
+            "theta": {
+              "field": "Theta_Average_Area_Burned",
+              "type": "quantitative"
+            },
             "color": {
               "field": "state",
               "type": "nominal"
@@ -151,11 +216,25 @@
             "align": "center",
             "baseline": "middle",
             "fontSize": 12,
-            "fontWeight": "bold"
+            "fontWeight": "bold",
+            "dy": -7
+          },
+          "encoding": {
+            "text": {"value": "Overall Average"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "middle",
+            "fontSize": 12,
+            "dy": 7
           },
           "encoding": {
             "text": {
-              "field": "Total_Avg_Area",
+              "aggregate": "average",
+              "field": "Overall_Average_Area",
               "type": "quantitative",
               "format": ",.0f"
             }
@@ -169,7 +248,10 @@
           "title": "Largest Area Burned (ha)",
           "mark": "arc",
           "encoding": {
-            "theta": {"field": "Largest_Area_Burned", "type": "quantitative"},
+            "theta": {
+              "field": "Theta_Largest_Area_Burned",
+              "type": "quantitative"
+            },
             "color": {
               "field": "state",
               "type": "nominal"
@@ -187,11 +269,24 @@
             "align": "center",
             "baseline": "middle",
             "fontSize": 12,
-            "fontWeight": "bold"
+            "fontWeight": "bold",
+            "dy": -7
+          },
+          "encoding": {
+            "text": {"value": "Maximum"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "middle",
+            "fontSize": 12,
+            "dy": 7
           },
           "encoding": {
             "text": {
-              "field": "Total_Largest_Area",
+              "field": "Max_Largest_Area",
               "type": "quantitative",
               "format": ",.0f"
             }
@@ -201,7 +296,11 @@
     }
   ],
   "config": {
-    "arc": {"innerRadius": 50},
+    "arc": {
+    "innerRadius": 50,
+    "cornerRadius": 3,
+    "padAngle": 0.01
+    },
     "view": {"stroke": null}
   }
 }
