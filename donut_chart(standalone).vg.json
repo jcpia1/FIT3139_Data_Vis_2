@@ -15,13 +15,6 @@
   ],
  "transform": [
     {
-      "calculate": "year(datum.ignition_date)",
-      "as": "year"
-    },
-    {
-      "filter": "(datum.year >= startYear && datum.year <= endYear)"
-    },
-    {
       "aggregate": [
         {"op": "count", "as": "Number_of_Fires"},
         {"op": "sum", "field": "area_ha", "as": "Area_Burned"},

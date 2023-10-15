@@ -10,7 +10,10 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
-  <script src="vega_lite_vis.js"></script>
+
+  <!-- Import noUiSlider -->
+  <link href="https://cdn.jsdelivr.net/npm/nouislider@14.7.0/distribute/nouislider.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/nouislider@14.7.0/distribute/nouislider.min.js"></script>
 
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
@@ -20,15 +23,22 @@
 
 <body>
   <div id="contentContainer">
-      <div id="header">
-          <h1>Historical Bushfires of Australia</h1>
-      </div>
+    <div id="header">
+        <h1>Historical Bushfires of Australia</h1>
+    </div>
 
-      <div id="visualization-container">
-          <div class="visualization1" id="map"></div>
-          <div class="visualization2" id="donut_chart"></div> <!-- Added the second visualization container -->
-      </div>
-      <div class="clearfix"></div> <!-- Added the clearfix -->
+    <div id="sliderContainer">
+        <div id="yearRangeSlider"></div>
+        <p>Years: <span id="yearRange"></span></p>
+    </div>
+
+    <div id="visualization-container">
+        <div class="visualization1" id="map"></div>
+        <div class="visualization2" id="donut_chart"></div> 
+    </div>
+    <div class="clearfix"></div>
   </div>
+
+  <script src="vega_lite_vis.js"></script>
 </body>
 </html>

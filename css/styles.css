@@ -35,9 +35,17 @@ body {
     margin: 0;
 }
 
-
-
-
+.slider {
+    width: 80%;
+    margin: 20px auto;
+  }
+  
+#sliderContainer {
+    width: 97%;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
 #visualization-container {
     display: flex;
     justify-content: center;
