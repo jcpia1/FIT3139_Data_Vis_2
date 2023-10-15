@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Stacked donut charts for bushfire statistics in Australian states and territories.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
+  },
+  "datasets": {
+    "stateAreas": [
+      {"state": "Victoria", "area_ha": 23765700},
+      {"state": "New South Wales", "area_ha": 80944400},
+      {"state": "Queensland", "area_ha": 178041600},
+      {"state": "Western Australia", "area_ha": 252987500},
+      {"state": "South Australia", "area_ha": 98348200},
+      {"state": "Tasmania", "area_ha": 6840100},
+      {"state": "Australian Capital Territory", "area_ha": 235800}
+    ]
+  },
+  "params": [
+    {
+      "name": "normalizeData",
+      "value": false,
+      "bind": {"input": "checkbox", "name": "Normalize Data"}
+    }
+  ],
+  "transform": [
+    {
+      "aggregate": [
+        {"op": "count", "as": "Number_of_Fires"},
+        {"op": "sum", "field": "area_ha", "as": "Total_Area_Burned"},
+        {"op": "mean", "field": "area_ha", "as": "Average_Area_Burned"},
+        {"op": "max", "field": "area_ha", "as": "Largest_Area_Burned"}
+      ],
+      "groupby": ["state"]
+    },
+    {
+      "lookup": "state",
+      "from": {
+        "data": {"name": "stateAreas"},
+        "key": "state",
+        "fields": ["area_ha"]
+      }
+    },
+    {
+      "calculate": "normalizeData ? datum.Number_of_Fires / datum.area_ha : datum.Number_of_Fires", 
+      "as": "Normalized_Fires"
+    },
+    {
+      "calculate": "normalizeData ? datum.Total_Area_Burned / datum.area_ha : datum.Total_Area_Burned", 
+      "as": "Normalized_Total_Area"
+    },
+    {
+      "calculate": "normalizeData ? datum.Average_Area_Burned / datum.area_ha : datum.Average_Area_Burned", 
+      "as": "Normalized_Avg_Area"
+    },
+    {
+      "calculate": "normalizeData ? datum.Largest_Area_Burned / datum.area_ha : datum.Largest_Area_Burned", 
+      "as": "Normalized_Largest_Area"
+    }
+  ],
+  "vconcat": [
+    {
+      "title": "Number of Fires",
+      "mark": "arc",
+      "encoding": {
+        "theta": {"field": "Normalized_Fires", "type": "quantitative"},
+        "color": {"field": "state", "type": "nominal", "legend": {"title": "State"}},
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "Number_of_Fires", "type": "quantitative", "title": "Number of Fires", "format": ",.0f"}
+        ]
+      }
+    },
+    {
+      "title": "Total Area Burned",
+      "mark": "arc",
+      "encoding": {
+        "theta": {"field": "Normalized_Total_Area", "type": "quantitative"},
+        "color": {"field": "state", "type": "nominal"},
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "Total_Area_Burned", "type": "quantitative", "title": "Total Area Burned (ha)", "format": ",.0f"}
+        ]
+      }
+    },
+    {
+      "title": "Average Area Burned",
+      "mark": "arc",
+      "encoding": {
+        "theta": {"field": "Normalized_Avg_Area", "type": "quantitative"},
+        "color": {"field": "state", "type": "nominal"},
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "Average_Area_Burned", "type": "quantitative", "title": "Average Area Burned (ha)", "format": ",.0f"}
+        ]
+      }
+    },
+    {
+      "title": "Largest Area Burned",
+      "mark": "arc",
+      "encoding": {
+        "theta": {"field": "Normalized_Largest_Area", "type": "quantitative"},
+        "color": {"field": "state", "type": "nominal"},
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "Largest_Area_Burned", "type": "quantitative", "title": "Largest Area Burned (ha)", "format": ",.0f"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "arc": {"innerRadius": 50},
+    "view": {"stroke": null}
+  }
+}

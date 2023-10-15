@@ -1,17 +1,43 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {
-    "name": "stateAreas",
-    "values": [
-      {"state": "Victoria", "area_km2": 237657},
-      {"state": "New South Wales", "area_km2": 809444},
-      {"state": "Queensland", "area_km2": 1780416},
-      {"state": "Western Australia", "area_km2": 2529875},
-      {"state": "South Australia", "area_km2": 983482},
-      {"state": "Tasmania", "area_km2": 68401},
-      {"state": "Australian Capital Territory", "area_km2": 2358}
+  "datasets": {
+    "stateAreas": [
+      {"state": "Victoria", "area_ha": 23765700},
+      {"state": "New South Wales", "area_ha": 80944400},
+      {"state": "Queensland", "area_ha": 178041600},
+      {"state": "Western Australia", "area_ha": 252987500},
+      {"state": "South Australia", "area_ha": 98348200},
+      {"state": "Tasmania", "area_ha": 6840100},
+      {"state": "Australian Capital Territory", "area_ha": 235800}
     ]
   },
+  "params": [
+    {
+      "name": "selectedYear",
+      "value": 2000,
+      "bind": {
+        "input": "range",
+        "min": 1940,
+        "max": 2021,
+        "step": 1,
+        "name": "Select Year"
+      }
+    },
+    {
+      "name": "selectedFireType",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "Bushfire", "Prescribed Burn"],
+        "name": "Fire Type"
+      }
+    },
+    {
+      "name": "normalizeData",
+      "value": false,
+      "bind": {"input": "checkbox", "name": "Normalize Data"}
+    }
+  ],
   "vconcat": [
     {
       "title": "Bushfires in Australia by Total Area",
@@ -177,36 +203,6 @@
           }
         }
       ]
-    }
-  ],
-  "params": [
-    {
-      "name": "selectedYear",
-      "value": 2000,
-      "bind": {
-        "input": "range",
-        "min": 1940,
-        "max": 2021,
-        "step": 1,
-        "name": "Select Year"
-      }
-    },
-    {
-      "name": "selectedFireType",
-      "value": "All",
-      "bind": {
-        "input": "select",
-        "options": ["All", "Bushfire", "Prescribed Burn"],
-        "name": "Fire Type"
-      }
-    },
-    {
-      "name": "normalizeData",
-      "value": true,
-      "bind": {
-        "input": "checkbox",
-        "name": "Normalize Data"
-      }
     }
   ]
 }
