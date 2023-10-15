@@ -2,20 +2,66 @@
 body {
     margin: 0;
     height: 100vh;
-    background: url('path_to_your_background_image.jpg') no-repeat center center fixed;
+    /*background-image: url('Images/Background.png');*/
+    background-color: gray;
     background-size: cover;
     display: flex;
     align-items: center; /* Center items vertically */
     justify-content: center; /* Center items horizontally */
+    flex-direction: column;
+
 }
+
 
 /* Styles for the upperSection div */
 #upperSection {
-    width: 80%; /* Adjust width as needed */
-    height: 80vh; /* Adjust height as needed */
+    width: 75%; /* Adjust as needed */
+    height: 75vh; /* Adjust as needed */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for a lifted effect */
+    border-radius: 20px; /* Optional: Rounds the corners */
+    overflow: hidden; /* Keeps content and children within rounded corners */
+
+    /* Flexbox to center the content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Styles for the map div */
+#contentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 80%;
+    margin: 50px auto;
+}
+
+#header {
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;  /* Adjusted padding for more thickness */
+    background-color: rgb(206, 24, 24);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+#header h1 {
+    color: black;     /* Adjust color if needed */
+    font-size: 2em;
+    margin: 0;
+}
+
+
+
 #map {
-    /* Any specific styles you'd like for the map div */
+    /* ... other styles ... */
+    max-width: 100%;  /* This ensures it doesn't grow beyond its container */
+    max-height: 100%;
+    overflow: auto;   /* Show scrollbars if the content overflows */
 }

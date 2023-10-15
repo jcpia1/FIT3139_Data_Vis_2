@@ -1,6 +1,5 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Bushfires in Australia",
   "data": {
     "name": "stateAreas",
     "values": [
@@ -17,7 +16,7 @@
     {
       "title": "Bushfires in Australia by Total Area",
       "width": "container",
-      "height": 500,
+      "height": "container",
       "projection": {
         "type": "mercator"
       },
@@ -182,7 +181,7 @@
     {
       "title": "Bushfires Count by State",
       "width": "container",
-      "height": 100,
+      "height": 50,
       "data": {
         "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
       },
