@@ -16,7 +16,7 @@
   "vconcat": [
     {
       "title": "Bushfires in Australia by Total Area",
-      "width": 800,
+      "width": "container",
       "height": 500,
       "projection": {
         "type": "mercator"
@@ -83,17 +83,23 @@
                 }
               ],
               "groupby": ["state"]
+            },
+            {
+              "lookup": "state",
+              "from": {
+                "data": {
+                  "name": "stateAreas"
+                },
+                "key": "state"
+              },
+              "as": "state_data"
+            },
+            {
+              "calculate": "datum.total_area / datum.state_data.area_km2",
+              "as": "total_area_normalized"
             }
           ],
           "encoding": {
-            "longitude": {
-              "field": "longitude",
-              "type": "quantitative"
-            },
-            "latitude": {
-              "field": "latitude",
-              "type": "quantitative"
-            },
             "text": {
               "condition": {
                 "test": "datum.count == 0",
@@ -157,16 +163,12 @@
               "type": "geojson"
             },
             "color": {
-              "field": "total_area",
-              "type": "quantitative",
-              "scale": {
-                "scheme": "orangered",
-                "clamp": true
+              "condition": {
+                "param": "normalizeData",
+                "field": "total_area",
+                "type": "quantitative"
               },
-              "legend":{
-                "title": "Total Area (ha)",
-                "tickCount": 5
-              }
+              "value": "total_area_normalized"
             },
             "tooltip": [
               {"field": "state", "type": "nominal", "title": "State"},
@@ -179,7 +181,7 @@
     },
     {
       "title": "Bushfires Count by State",
-      "width": 800,
+      "width": "container",
       "height": 100,
       "data": {
         "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"

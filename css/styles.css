@@ -1,44 +1,21 @@
-body *{
-    font-family: 'Open Sans', sans-serif;
-}
-
-h1 {
-    font-weight: 900;
-}
-
+/* Styles for the body */
 body {
-    background-color: lightgray;
+    margin: 0;
+    height: 100vh;
+    background: url('path_to_your_background_image.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Center items horizontally */
 }
 
-.page {
-    width: 850px;
-    background-color: white;
-    margin: auto;
-    padding: 50px;
-    padding-top: 35px;
+/* Styles for the upperSection div */
+#upperSection {
+    width: 80%; /* Adjust width as needed */
+    height: 80vh; /* Adjust height as needed */
 }
 
-.vis-container {
-    width: 100%;
-}
-
-.description h2,
-h1 {
-    margin-top: 0px;
-}
-
-.description-right {
-    padding-left: 20px;
-}
-
-.description-left {
-    padding-right: 20px;
-}
-
-.pure-g {
-    margin-bottom: 40px;
-}
-
-.small-font {
-    font-size: 14px;
+/* Styles for the map div */
+#map {
+    /* Any specific styles you'd like for the map div */
 }
