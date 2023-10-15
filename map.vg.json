@@ -41,8 +41,8 @@
   "vconcat": [
     {
       "title": "Bushfires in Australia by Total Area",
-      "width": 800,
-      "height": 500,
+      "width": "container",
+      "height": "container",
       "projection": {
         "type": "mercator"
       },
@@ -197,8 +197,8 @@
             },
             "tooltip": [
               {"field": "state", "type": "nominal", "title": "State"},
-              {"field": "count", "type": "quantitative", "title": "Number of Bushfires"},
-              {"field": "total_area", "type": "quantitative", "title": "Total Area Burned (ha)"}
+              {"field": "count", "type": "quantitative", "title": "Number of Bushfires", "format": ",.0f"},
+              {"field": "total_area", "type": "quantitative", "title": "Total Area Burned (ha)", "format": ",.0f"}
             ]     
           }
         }
