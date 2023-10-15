@@ -11,6 +11,14 @@
         "input": "checkbox",
         "name": "Display Equal Angles"
       }
+    },
+    {
+      "name": "startYear",
+      "value": 1899
+    },
+    {
+      "name": "endYear",
+      "value": 2020
     }
   ],
  "transform": [

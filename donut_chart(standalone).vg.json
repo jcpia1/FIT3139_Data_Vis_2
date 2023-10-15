@@ -53,22 +53,6 @@
       "as": "Overall_Average_Area"
     },
     {
-      "calculate": "equalAngles ? 1 : datum.Number_of_Fires",
-      "as": "Theta_Number_of_Fires"
-    },
-    {
-      "calculate": "equalAngles ? 1 : datum.Area_Burned",
-      "as": "Theta_Area_Burned"
-    },
-    {
-      "calculate": "equalAngles ? 1 : datum.Average_Area_Burned",
-      "as": "Theta_Average_Area_Burned"
-    },
-    {
-      "calculate": "equalAngles ? 1 : datum.Largest_Area_Burned",
-      "as": "Theta_Largest_Area_Burned"
-    },
-    {
       "lookup": "state",
       "from": {
         "data": {

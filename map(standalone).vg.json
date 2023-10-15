@@ -1,0 +1,151 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Bushfires in Australia by Total Area",
+  "params": [
+    {
+      "name": "selectedYear",
+      "value": 2000,
+      "bind": {
+        "input": "range",
+        "min": 1899,
+        "max": 2020,
+        "step": 1,
+        "name": "Select Year"
+      }
+    },
+    {
+      "name": "selectedFireType",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "Bushfire", "Prescribed Burn"],
+        "name": "Fire Type"
+      }
+    },
+    {
+      "name": "normalizeData",
+      "value": true,
+      "bind": {
+        "input": "checkbox",
+        "name": "Normalize Data"
+      }
+    }
+  ],
+  "projection": {
+    "type": "mercator"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/geodata.json",
+    "format": {
+      "type": "topojson",
+      "feature": "ne_10m_admin_1_states_provinces"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "fill": "lightgray"
+      }
+    },
+    {
+      "data": {
+        "name": "bushfires",
+        "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
+      },
+      "transform": [
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "name": "stateAreas"
+            },
+            "key": "state",
+            "fields": ["area_ha"]
+          }
+        },
+        {
+          "lookup": "properties.gns_name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
+            },
+            "key": "state",
+            "fields": ["ignition_date", "fire_type", "area_ha", "state"]
+          }
+        },
+        {
+          "joinaggregate": [
+            {"op": "sum", "field": "Number_of_Fires", "as": "Total_Fires"},
+            {"op": "sum", "field": "Area_Burned", "as": "Total_Area"},
+            {"op": "sum", "field": "Average_Area_Burned", "as": "Total_Avg_Area"},
+            {"op": "sum", "field": "Largest_Area_Burned", "as": "Total_Largest_Area"},
+            {"op": "max", "field": "Largest_Area_Burned", "as": "Max_Largest_Area"}
+          ]
+        },
+        {
+          "calculate": "datum.Number_of_Fires / datum.Total_Fires",
+          "as": "Normalized_Fires"
+        },
+        {
+          "calculate": "datum.Area_Burned / datum.Total_Area",
+          "as": "Normalized_Total_Area"
+        },
+        {
+          "calculate": "datum.Average_Area_Burned / datum.Total_Avg_Area",
+          "as": "Normalized_Avg_Area"
+        }
+      ],
+      "mark": {
+        "type": "geoshape"
+      },
+      "encoding": {
+        "color": {
+          "field": "Area_Burned",
+          "type": "quantitative",
+          "title": "Total Area Burned (ha)"
+        },
+        "opacity": {
+          "condition": {
+            "param": "normalizeData",
+            "value": 0
+          },
+          "value": 1
+        }
+      }
+    },
+    {
+      "data": {
+        "name": "bushfires",
+        "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
+      },
+      "transform": [
+        {
+          "lookup": "properties.gns_name",
+          "from": {
+            "data": "bushfires",
+            "key": "state",
+            "fields": ["Normalized_Total_Area"]
+          }
+        }
+      ],
+      "mark": {
+        "type": "geoshape"
+      },
+      "encoding": {
+        "color": {
+          "field": "Normalized_Total_Area",
+          "type": "quantitative",
+          "title": "Normalized Total Area Burned"
+        },
+        "opacity": {
+          "condition": {
+            "param": "normalizeData",
+            "value": 1
+          },
+          "value": 0
+        }
+      }
+    }
+  ]
+}

@@ -1,84 +1,83 @@
-body {
+body, html {
     margin: 0;
     height: 100vh;
     background-color: gray;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;  /* Aligns the content container to the middle of the page */
-}
-
-#contentContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80vw;  /* Width is set to 80% of the viewport width */
-    height: 80vh;  /* Height is set to 80% of the viewport height */
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    padding: 1vw;  /* A bit of padding for breathing space */
-    position: relative;
 }
 
 #header {
-    width: 100%;
+    width: 100vw;
     text-align: center;
-    padding: 1vw 0;
     background-color: rgb(206, 24, 24);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
 }
 
 #header h1 {
     color: black;
     font-size: 2em;
     margin: 0;
+    padding: 10px;
 }
 
-.slider {
-    width: 80%;
-    margin: 20px auto;
-  }
-  
 #sliderContainer {
-    width: 97%;
-    text-align: center;
-    padding: 20px 0;
-  }
-  
-#visualization-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-}
-
-.visualization {
-    flex: 0 0 45%;  /* This means each visualization will occupy 45% of the container's width, adjust if needed */
-    margin: 0 2%;  /* Gives a 2% margin between the visualizations */
-}
-
-#map {
     width: 100%;
-    max-width: 90%;  /* this allows for some margin on the sides */
-    overflow: auto;   
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    top: 70px; /* Adjust based on the height of the header */
+    left: 0;
+    z-index: 10;
+}
+
+#contentContainer {
+    display: flex;
+    width: 80vw;
+    height: 80vh;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 70px 1vw 1vw 1vw; /* Top padding is for the header and slider */
+    position: relative;
+    top: 150px; /* Adjust based on header and slider heights */
+}
+
+#leftTextContainer {
+    flex: 1;
+    padding: 0 1vw;
+    border-right: 1px solid gray; /* Optional, adds a separating line */
+}
+
+#visualization-container {
+    flex: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.visualization1 {
+    flex: 2;
 }
 
 .visualization2 {
-    width: 20%; 
-    height: auto; 
-    float: right; 
-    margin: 2% 2% 2% 2%; 
-    position: relative; 
+    flex: 1;
+    margin-left: 2vw; /* Space between the map and the donut chart */
 }
 
-body, html {
-    overflow: hidden; 
+#footer {
+    width: 100vw;
+    height: 50px; /* Or whatever height you prefer */
+    background-color: rgb(206, 24, 24);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
 }
 
-#donut_chart {
-    width: 100%;
-    max-width: 90%;  /* this allows for some margin on the sides */
-    overflow: auto;   
-}
-
+/* [Rest of the styles remain unchanged] */

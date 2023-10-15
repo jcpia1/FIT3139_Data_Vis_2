@@ -1,51 +1,33 @@
-// Embedding Vega Visualizations
 var vg_1 = "map.vg.json";
-vegaEmbed("#map", vg_1, {actions:false}).then(function(result) {
-    // Access the Vega view instance as result.view
-}).catch(console.error);
+vegaEmbed("#map", vg_1, {actions:false}).catch(console.error);
 
-var vg_2 = "donut_chart.vg.json";
-vegaEmbed("#donut_chart", vg_2, {actions:false}).then(function(result) {
-    // Access the Vega view instance as result.view
-}).catch(console.error);
+// Load the donut_chart spec dynamically
+fetch('donut_chart.vg.json')
+    .then(response => response.json())
+    .then(data => {
+        // Store the loaded spec in the donut_chart variable
+        var donut_chart = data;
 
-// Slider logic
-var yearRangeSlider = document.getElementById('yearRangeSlider');
-var yearRangeOutput = document.getElementById('yearRange');
+        function updateVisualization(startYear, endYear) {
+            var modifiedSpec = JSON.parse(JSON.stringify(donut_chart)); // Deep copy of the spec
 
-noUiSlider.create(yearRangeSlider, {
-    start: [1899, 2020],
-    connect: true,
-    range: {
-        'min': 1899,
-        'max': 2020
-    }
-});
+            // Find the filter transform and update its condition
+            for (var i = 0; i < modifiedSpec.transform.length; i++) {
+                var transform = modifiedSpec.transform[i];
+                if (transform.filter && transform.filter.includes("startYear") && transform.filter.includes("endYear")) {
+                    transform.filter = `(year(datum.ignition_date) >= ${startYear} && year(datum.ignition_date) <= ${endYear})`;
+                    break;
+                }
+            }
 
-yearRangeSlider.noUiSlider.on('update', function(values, handle) {
-    yearRangeOutput.innerHTML = Math.round(values[0]) + ' - ' + Math.round(values[1]);
-    
-    // Update the visualization
-    updateVisualization(Math.round(values[0]), Math.round(values[1]));
-});
-
-function updateVisualization(startYear, endYear) {
-    // Load your Vega-Lite specification from the JSON file
-    fetch('donut_chart.vg.json')
-      .then(response => response.json())
-      .then(vegaLiteSpec => {
-        // Modify the filter condition in the Vega-Lite specification
-        for (var i = 0; i < vegaLiteSpec.transform.length; i++) {
-          var transform = vegaLiteSpec.transform[i];
-          if (transform.filter && transform.filter.includes("startYear") && transform.filter.includes("endYear")) {
-            transform.filter = `(datum.year >= ${startYear} && datum.year <= ${endYear})`;
-            break;
-          }
+            // Re-render the visualization with the modified spec
+            vegaEmbed('#donut_chart', modifiedSpec, {actions:false}).catch(console.error);
         }
-  
-        // Re-render the visualization with the modified spec
-        vegaEmbed('#donut_chart', vegaLiteSpec);
-      })
-      .catch(error => console.error(error));
-  }
-  
+
+        // Initial render of the donut chart
+        vegaEmbed('#donut_chart', donut_chart, {actions:false}).catch(console.error);
+
+        // Expose the updateVisualization function to the global scope so it can be called from the HTML slider
+        window.updateVisualization = updateVisualization;
+    })
+    .catch(console.error);
