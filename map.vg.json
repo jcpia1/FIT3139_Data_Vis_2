@@ -1,6 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Bushfires in Australia",
+  "data": {
+    "name": "stateAreas",
+    "values": [
+      {"state": "Victoria", "area_km2": 237657},
+      {"state": "New South Wales", "area_km2": 809444},
+      {"state": "Queensland", "area_km2": 1780416},
+      {"state": "Western Australia", "area_km2": 2529875},
+      {"state": "South Australia", "area_km2": 983482},
+      {"state": "Tasmania", "area_km2": 68401},
+      {"state": "Australian Capital Territory", "area_km2": 2358}
+    ]
+  },
   "vconcat": [
     {
       "title": "Bushfires in Australia by Total Area",
@@ -168,7 +180,7 @@
     {
       "title": "Bushfires Count by State",
       "width": 800,
-      "height": 300,
+      "height": 100,
       "data": {
         "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
       },
@@ -236,6 +248,14 @@
         "input": "select",
         "options": ["All", "Bushfire", "Prescribed Burn"],
         "name": "Fire Type"
+      }
+    },
+    {
+      "name": "normalizeData",
+      "value": true,
+      "bind": {
+        "input": "checkbox",
+        "name": "Normalize Data"
       }
     }
   ]
