@@ -1,0 +1,107 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Bushfires in Australia by Total Area",
+  "width": "container",
+  "height": 500,
+  "projection": {
+    "type": "mercator"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/geodata.json",
+    "format": {
+      "type": "topojson",
+      "feature": "ne_10m_admin_1_states_provinces"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "properties.gns_name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
+        },
+        "key": "state",
+        "fields": ["ignition_date", "fire_type", "area_ha", "state"]
+      }
+    },
+    {
+      "calculate": "year(datum.ignition_date)",
+      "as": "year"
+    },
+    {
+      "filter": "selectedYear === 2021 || datum.year === selectedYear"
+    },
+    {
+      "filter": "selectedFireType === 'All' || datum.fire_type === selectedFireType"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "sum",
+          "field": "area_ha",
+          "as": "total_area"
+        }
+      ],
+      "groupby": ["state"]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e5e5e5", 
+        "stroke": "#ffffff"
+      }
+    },
+    {
+      "mark": {
+        "type": "geoshape"
+      },
+      "encoding": {
+        "color": {
+          "condition": {
+            "test": "isValid(datum.total_area)",
+            "field": "total_area",
+            "type": "quantitative",
+            "title": "Total Area Burned (ha)"
+          },
+          "value": "#e5e5e5"
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {"field": "total_area", "type": "quantitative", "title": "Total Area Burned (ha)"}
+        ]
+      }
+    }
+  ],
+  "params": [
+    {
+      "name": "selectedYear",
+      "value": 2000,
+      "bind": {
+        "input": "range",
+        "min": 1940,
+        "max": 2021,
+        "step": 1,
+        "name": "Select Year"
+      }
+    },
+    {
+      "name": "selectedFireType",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "Bushfire", "Prescribed Burn"],
+        "name": "Fire Type"
+      }
+    },
+    {
+      "name": "normalizeData",
+      "value": true,
+      "bind": {
+        "input": "checkbox",
+        "name": "Normalize Data"
+      }
+    }
+  ]
+}

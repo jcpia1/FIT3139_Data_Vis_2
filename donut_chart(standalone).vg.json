@@ -15,6 +15,16 @@
   ],
  "transform": [
     {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "name": "stateAreas"
+        },
+        "key": "state",
+        "fields": ["area_ha"]
+      }
+    },
+    {
       "aggregate": [
         {"op": "count", "as": "Number_of_Fires"},
         {"op": "sum", "field": "area_ha", "as": "Area_Burned"},
@@ -51,16 +61,6 @@
     {
       "calculate": "datum.Total_Area / datum.Total_Fires",
       "as": "Overall_Average_Area"
-    },
-    {
-      "lookup": "state",
-      "from": {
-        "data": {
-          "name": "stateAreas"
-        },
-        "key": "state",
-        "fields": ["area_ha"]
-      }
     }
   ],
 "vconcat": [
