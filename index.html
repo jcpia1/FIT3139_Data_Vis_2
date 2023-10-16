@@ -2,51 +2,51 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Import vega and vega-lite -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <!-- Import vega and vega-lite -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <script src="vega_lite_vis.js"></script>
 
-  <!-- Import noUiSlider -->
-  <link href="https://cdn.jsdelivr.net/npm/nouislider@14.7.0/distribute/nouislider.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/nouislider@14.7.0/distribute/nouislider.min.js"></script>
-  <script src="vega_lite_vis.js"></script>
+    <!-- Import noUiSlider -->
+    <link href="https://cdn.jsdelivr.net/npm/nouislider@14.7.0/distribute/nouislider.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/nouislider@14.7.0/distribute/nouislider.min.js"></script>
 
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
-
-  <title>Data Vis 2</title>
+    <!-- CSS file -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 </head>
 
 <body>
-    <div id="header">
-        <h1>Historical Bushfires of Australia</h1>
-    </div>
-    
-    <div id="sliderContainer">
-        <div id="yearRangeSlider"></div>
-        <p>Years: <span id="yearRange"></span></p>
-    </div>
-
-    <div id="contentContainer">
-        <div id="leftTextContainer"> <!-- New container for the left text -->
-            <!-- Add your text here later -->
+    <div class="tableWrapper">
+        <div id="header">
+            <h1>Historical Bushfires of Australia</h1>
         </div>
 
-        <div id="visualization-container">
-            <div class="visualization1" id="map"></div>
-            <div class="visualization2" id="donut_chart"></div> 
+
+        <div id="sliderContainer">
+            <div id="yearRangeSlider"></div>
+            <p>Years: <span id="yearRange"></span></p>
         </div>
-    </div>
 
-    <div id="footer"> <!-- New footer -->
-        <!-- Footer content can be added here -->
-    </div>
 
-    <script src="vega_lite_vis.js"></script>
+        <div id="contentContainer">
+            <div class="textContainer" id="leftTextContainer"></div>
+            <div id="mapContainer">
+                <div id="map"></div>
+            </div>
+            <div class="textContainer" id="rightTextContainer"></div>
+        </div>
+
+
+        <div id="donut_chart_container">
+            <div id="donut_chart"></div>
+        </div>
+        <div id="footer"></div>
+        
+    </div>
 </body>
 </html>

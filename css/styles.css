@@ -1,83 +1,72 @@
-body, html {
-    margin: 0;
-    height: 100vh;
+body {
+    margin: 2% 5%; 
     background-color: gray;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     overflow: hidden;
 }
 
-#header {
-    width: 100vw;
-    text-align: center;
-    background-color: rgb(206, 24, 24);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-}
-
-#header h1 {
-    color: black;
-    font-size: 2em;
-    margin: 0;
-    padding: 10px;
-}
-
-#sliderContainer {
+.tableWrapper {
+    display: table;
     width: 100%;
+    height: 96vh; 
+}
+
+#header, #footer, #sliderContainer, #donut_chart_container, #contentContainer {
+    display: table-row;
+}
+
+#header h1, #sliderContainer, #footer {
+    display: table-cell;
+    width: 100%;
+    background-color: rgb(206, 24, 24);
     text-align: center;
-    padding: 10px 0;
-    position: absolute;
-    top: 70px; /* Adjust based on the height of the header */
-    left: 0;
-    z-index: 10;
 }
 
 #contentContainer {
-    display: flex;
-    width: 80vw;
-    height: 80vh;
+    display: table;
+    width: 100%;
+}
+
+.textContainer, #mapContainer {
+    display: table-cell;
+    padding: 2%;
     background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 70px 1vw 1vw 1vw; /* Top padding is for the header and slider */
-    position: relative;
-    top: 150px; /* Adjust based on header and slider heights */
+    vertical-align: top; 
 }
 
-#leftTextContainer {
-    flex: 1;
-    padding: 0 1vw;
-    border-right: 1px solid gray; /* Optional, adds a separating line */
-}
-
-#visualization-container {
-    flex: 3;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+#mapContainer {
+    width: 60%; 
     height: 100%;
 }
 
-.visualization1 {
-    flex: 2;
+#map {
+    width: 100%;
+    height: 100%;
 }
 
-.visualization2 {
+.textContainer {
+    width: 20%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#donut_chart_container {
+    display: table-cell;
+    padding: 1em;
+    background-color: white;
+    width: 100%;
+}
+
+#donut_chart {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+}
+
+.donut_single_chart {  /* Assuming each individual chart is within this class */
     flex: 1;
-    margin-left: 2vw; /* Space between the map and the donut chart */
+    padding: 0 1em; 
 }
 
 #footer {
-    width: 100vw;
-    height: 50px; /* Or whatever height you prefer */
-    background-color: rgb(206, 24, 24);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 10;
+    height: 50px; 
 }
-
-/* [Rest of the styles remain unchanged] */
