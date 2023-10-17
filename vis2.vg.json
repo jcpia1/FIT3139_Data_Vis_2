@@ -13,13 +13,27 @@
         }
         },
         {
-        "name": "startYear",
-        "value": 1899
-        },
-        {
-        "name": "endYear",
-        "value": 2020
-        }
+      "name": "startYear",
+      "value": 1899,
+      "bind": {
+        "input": "range",
+        "min": 1899,
+        "max": 2020,
+        "step": 1,
+        "name": "Start Year"
+      }
+    },
+    {
+      "name": "endYear",
+      "value": 2020,
+      "bind": {
+        "input": "range",
+        "min": 1899,
+        "max": 2020,
+        "step": 1,
+        "name": "End Year"
+      }
+    }
     ],
     "transform": [
     {
@@ -108,10 +122,13 @@
         "as": "geo"
       }
   ],
-  "vconcat": [
+  "hconcat": [
     {
+      "height": 600,
+      "width": 400,
         "layer": [
             {
+            
             "projection": {
                 "type": "mercator"
               },
@@ -154,7 +171,8 @@
                     "legend": {
                         "title": "Total Area Burned (ha)",
                         "tickCount": 5,
-                        "labelAlign": "center"
+                        "labelAlign": "center",
+                        "orient": "bottom"
                     }
                     },
                     "tooltip": [
@@ -167,7 +185,7 @@
         ]
     },
     {
-        "hconcat": [
+        "vconcat": [
             {
               "layer": [
                 {

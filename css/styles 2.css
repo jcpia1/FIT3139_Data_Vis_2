@@ -57,7 +57,7 @@ body {
     background-color: rgb(206, 24, 24);
 }
 
-/* Create a flex container to hold leftTextContainer, visualization-container, and donut_chart_container */
+/* Create a flex container to hold leftTextContainer and visualization-container */
 .middle-section {
     flex: 1; /* Take up remaining space */
     display: flex;
@@ -65,33 +65,19 @@ body {
     width: 100%;
 }
 
-#visualization-container,
-#donut_chart_container {
-    flex-grow: 1;  /* Allow them to grow and occupy available space */
+#visualization-container {
+    flex-grow: 3;  /* Allow it to grow and occupy available space previously occupied by donut chart container */
     overflow: hidden;  /* Prevent any spillover */
+    background-color: #888; /* For visualization purpose */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
 #leftTextContainer {
     flex: 1; /* Adjust this value to set width of this container */
     background-color: #aaa; /* For visualization purpose */
-    height: 100%;
-    width: 100%;
-}
-
-#visualization-container {
-    background-color: #888; /* For visualization purpose */
-    flex: 2; /* They will share the remaining width equally */
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-}
-
-#donut_chart_container {
-    background-color: #666; /* For visualization purpose */
-    flex: 1; /* They will share the remaining width equally */
-    display: flex;
-    flex-direction: column;
     height: 100%;
     width: 100%;
 }
