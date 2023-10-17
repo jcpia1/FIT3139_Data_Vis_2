@@ -96,225 +96,229 @@
   ],
   "vconcat": [
     {
-        "hconcat": [
+      "hconcat": [
+          {
+              "width":"container",
+              "layer": [
+                {
+                  "title": "Number of Fires",
+                  "mark": "arc",
+                  "encoding": {
+                    "theta": {
+                      "field": "Theta_Number_of_Fires",
+                      "type": "quantitative"
+                    },
+                    "color": {
+                      "field": "state",
+                      "type": "nominal",
+                      "scale": {
+                        "domain": ["ACT", "NSW", "NT", "Qld", "SA", "Tas", "Vic", "WA"],
+                        "range": ["#0000FF", "#87CEEB", "#993333", "#800000", "#FF0000", "#006A4E", "#000080", "#FFD700"]
+                      },
+                      "legend": {"title": "State"}
+                    },
+                    "tooltip": [
+                      {"field": "state", "type": "nominal", "title": "State"},
+                      {"field": "Number_of_Fires", "type": "quantitative", "title": "Number of Fires", "format": ",.0f"},
+                      {"field": "Normalized_Fires", "type": "quantitative", "title": "Number of Fires (%)", "format": ".2%"}
+                    ]
+                  }
+                },
+                {
+                  "mark": {
+                    "type": "text",
+                    "align": "center",
+                    "baseline": "middle",
+                    "fontSize": 12,
+                    "fontWeight": "bold",
+                    "dy": -7
+                  },
+                  "encoding": {
+                    "text": {"value": "Total"}
+                  }
+                },
+                {
+                  "mark": {
+                    "type": "text",
+                    "align": "center",
+                    "baseline": "middle",
+                    "fontSize": 12,
+                    "dy": 7
+                  },
+                  "encoding": {
+                    "text": {
+                      "field": "Total_Fires",
+                      "type": "quantitative",
+                      "format": ",.0f"
+                    }
+                  }
+                }
+              ]
+            },
             {
-                "layer": [
-                  {
-                    "title": "Number of Fires",
-                    "mark": "arc",
-                    "encoding": {
-                      "theta": {
-                        "field": "Theta_Number_of_Fires",
-                        "type": "quantitative"
-                      },
-                      "color": {
-                        "field": "state",
-                        "type": "nominal",
-                        "scale": {
-                          "domain": ["Australian Capital Territory", "New South Wales", "Northern Territory", "Queensland", "South Australia", "Tasmania", "Victoria", "Western Australia"],
-                          "range": ["#0000FF", "#87CEEB", "#993333", "#800000", "#FF0000", "#006A4E", "#000080", "#FFD700"]
-                        },
-                        "legend": {"title": "State"}
-                      },
-                      "tooltip": [
-                        {"field": "state", "type": "nominal", "title": "State"},
-                        {"field": "Number_of_Fires", "type": "quantitative", "title": "Number of Fires", "format": ",.0f"},
-                        {"field": "Normalized_Fires", "type": "quantitative", "title": "Number of Fires (%)", "format": ".2%"}
-                      ]
-                    }
-                  },
-                  {
-                    "mark": {
-                      "type": "text",
-                      "align": "center",
-                      "baseline": "middle",
-                      "fontSize": 12,
-                      "fontWeight": "bold",
-                      "dy": -7
+              "width":"container",
+              "layer": [
+                {
+                  "title": "Area Burned (ha)",
+                  "mark": "arc",
+                  "encoding": {
+                    "theta": {
+                      "field": "Theta_Area_Burned",
+                      "type": "quantitative"
                     },
-                    "encoding": {
-                      "text": {"value": "Total"}
-                    }
-                  },
-                  {
-                    "mark": {
-                      "type": "text",
-                      "align": "center",
-                      "baseline": "middle",
-                      "fontSize": 12,
-                      "dy": 7
+                    "color": {
+                      "field": "state",
+                      "type": "nominal"
                     },
-                    "encoding": {
-                      "text": {
-                        "field": "Total_Fires",
-                        "type": "quantitative",
-                        "format": ",.0f"
-                      }
+                    "tooltip": [
+                      {"field": "state", "type": "nominal", "title": "State"},
+                      {"field": "Area_Burned", "type": "quantitative", "title": "Area Burned (ha)", "format": ",.0f"},
+                      {"field": "Normalized_Total_Area", "type": "quantitative", "title": "Area Burned (%)", "format": ".2%"}
+                    ]
+                  }
+                },
+                {
+                  "mark": {
+                    "type": "text",
+                    "align": "center",
+                    "baseline": "middle",
+                    "fontSize": 12,
+                    "fontWeight": "bold",
+                    "dy": -7
+                  },
+                  "encoding": {
+                    "text": {"value": "Total"}
+                  }
+                },
+                {
+                  "mark": {
+                    "type": "text",
+                    "align": "center",
+                    "baseline": "middle",
+                    "fontSize": 12,
+                    "dy": 7
+                  },
+                  "encoding": {
+                    "text": {
+                      "field": "Total_Area",
+                      "type": "quantitative",
+                      "format": ",.0f"
                     }
                   }
-                ]
-              },
-              {
-                "layer": [
-                  {
-                    "title": "Area Burned (ha)",
-                    "mark": "arc",
-                    "encoding": {
-                      "theta": {
-                        "field": "Theta_Area_Burned",
-                        "type": "quantitative"
-                      },
-                      "color": {
-                        "field": "state",
-                        "type": "nominal"
-                      },
-                      "tooltip": [
-                        {"field": "state", "type": "nominal", "title": "State"},
-                        {"field": "Area_Burned", "type": "quantitative", "title": "Area Burned (ha)", "format": ",.0f"},
-                        {"field": "Normalized_Total_Area", "type": "quantitative", "title": "Area Burned (%)", "format": ".2%"}
-                      ]
-                    }
-                  },
-                  {
-                    "mark": {
-                      "type": "text",
-                      "align": "center",
-                      "baseline": "middle",
-                      "fontSize": 12,
-                      "fontWeight": "bold",
-                      "dy": -7
-                    },
-                    "encoding": {
-                      "text": {"value": "Total"}
-                    }
-                  },
-                  {
-                    "mark": {
-                      "type": "text",
-                      "align": "center",
-                      "baseline": "middle",
-                      "fontSize": 12,
-                      "dy": 7
-                    },
-                    "encoding": {
-                      "text": {
-                        "field": "Total_Area",
-                        "type": "quantitative",
-                        "format": ",.0f"
-                      }
-                    }
-                  }
-                ]
-              }
-        ]
+                }
+              ]
+            }
+      ]
     },
     {
         "hconcat": [
             {
-                "layer": [
-                  {
-                    "title": "Average Area Burned (ha)",
-                    "mark": "arc",
-                    "encoding": {
-                      "theta": {
-                        "field": "Theta_Average_Area_Burned",
-                        "type": "quantitative"
-                      },
-                      "color": {
-                        "field": "state",
-                        "type": "nominal"
-                      },
-                      "tooltip": [
-                        {"field": "state", "type": "nominal", "title": "State"},
-                        {"field": "Average_Area_Burned", "type": "quantitative", "title": "Average Area Burned (ha)", "format": ",.0f"},
-                        {"field": "Normalized_Avg_Area", "type": "quantitative", "title": "Average Area Burned (%)", "format": ".2%"}
-                      ]
-                    }
-                  },
-                  {
-                    "mark": {
-                      "type": "text",
-                      "align": "center",
-                      "baseline": "middle",
-                      "fontSize": 12,
-                      "fontWeight": "bold",
-                      "dy": -7
+              "width":"container",
+              "layer": [
+                {
+                  "title": "Average Area Burned (ha)",
+                  "mark": "arc",
+                  "encoding": {
+                    "theta": {
+                      "field": "Theta_Average_Area_Burned",
+                      "type": "quantitative"
                     },
-                    "encoding": {
-                      "text": {"value": "Overall Average"}
-                    }
-                  },
-                  {
-                    "mark": {
-                      "type": "text",
-                      "align": "center",
-                      "baseline": "middle",
-                      "fontSize": 12,
-                      "dy": 7
+                    "color": {
+                      "field": "state",
+                      "type": "nominal"
                     },
-                    "encoding": {
-                      "text": {
-                        "aggregate": "average",
-                        "field": "Overall_Average_Area",
-                        "type": "quantitative",
-                        "format": ",.0f"
-                      }
+                    "tooltip": [
+                      {"field": "state", "type": "nominal", "title": "State"},
+                      {"field": "Average_Area_Burned", "type": "quantitative", "title": "Average Area Burned (ha)", "format": ",.0f"},
+                      {"field": "Normalized_Avg_Area", "type": "quantitative", "title": "Average Area Burned (%)", "format": ".2%"}
+                    ]
+                  }
+                },
+                {
+                  "mark": {
+                    "type": "text",
+                    "align": "center",
+                    "baseline": "middle",
+                    "fontSize": 12,
+                    "fontWeight": "bold",
+                    "dy": -7
+                  },
+                  "encoding": {
+                    "text": {"value": "Overall Average"}
+                  }
+                },
+                {
+                  "mark": {
+                    "type": "text",
+                    "align": "center",
+                    "baseline": "middle",
+                    "fontSize": 12,
+                    "dy": 7
+                  },
+                  "encoding": {
+                    "text": {
+                      "aggregate": "average",
+                      "field": "Overall_Average_Area",
+                      "type": "quantitative",
+                      "format": ",.0f"
                     }
                   }
-                ]
-              },
-              {
-                "layer": [
-                  {
-                    "title": "Largest Area Burned (ha)",
-                    "mark": "arc",
-                    "encoding": {
-                      "theta": {
-                        "field": "Theta_Largest_Area_Burned",
-                        "type": "quantitative"
-                      },
-                      "color": {
-                        "field": "state",
-                        "type": "nominal"
-                      },
-                      "tooltip": [
-                        {"field": "state", "type": "nominal", "title": "State"},
-                        {"field": "Largest_Area_Burned", "type": "quantitative", "title": "Largest Area Burned (ha)", "format": ",.0f"},
-                        {"field": "Normalized_Largest_Area", "type": "quantitative", "title": "Largest Area Burned (%)", "format": ".2%"}
-                      ]
-                    }
-                  },
-                  {
-                    "mark": {
-                      "type": "text",
-                      "align": "center",
-                      "baseline": "middle",
-                      "fontSize": 12,
-                      "fontWeight": "bold",
-                      "dy": -7
+                }
+              ]
+            },
+            {
+              "width":"container",
+              "layer": [
+                {
+                  "title": "Largest Area Burned (ha)",
+                  "mark": "arc",
+                  "encoding": {
+                    "theta": {
+                      "field": "Theta_Largest_Area_Burned",
+                      "type": "quantitative"
                     },
-                    "encoding": {
-                      "text": {"value": "Maximum"}
-                    }
-                  },
-                  {
-                    "mark": {
-                      "type": "text",
-                      "align": "center",
-                      "baseline": "middle",
-                      "fontSize": 12,
-                      "dy": 7
+                    "color": {
+                      "field": "state",
+                      "type": "nominal"
                     },
-                    "encoding": {
-                      "text": {
-                        "field": "Max_Largest_Area",
-                        "type": "quantitative",
-                        "format": ",.0f"
-                      }
+                    "tooltip": [
+                      {"field": "state", "type": "nominal", "title": "State"},
+                      {"field": "Largest_Area_Burned", "type": "quantitative", "title": "Largest Area Burned (ha)", "format": ",.0f"},
+                      {"field": "Normalized_Largest_Area", "type": "quantitative", "title": "Largest Area Burned (%)", "format": ".2%"}
+                    ]
+                  }
+                },
+                {
+                  "mark": {
+                    "type": "text",
+                    "align": "center",
+                    "baseline": "middle",
+                    "fontSize": 12,
+                    "fontWeight": "bold",
+                    "dy": -7
+                  },
+                  "encoding": {
+                    "text": {"value": "Maximum"}
+                  }
+                },
+                {
+                  "mark": {
+                    "type": "text",
+                    "align": "center",
+                    "baseline": "middle",
+                    "fontSize": 12,
+                    "dy": 7
+                  },
+                  "encoding": {
+                    "text": {
+                      "field": "Max_Largest_Area",
+                      "type": "quantitative",
+                      "format": ",.0f"
                     }
                   }
-                ]
-              }
+                }
+              ]
+            }
         ]
     }
 ],

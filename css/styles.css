@@ -15,9 +15,11 @@ body {
 #contentContainer {
     height: 95vh;
     width: 95vw;
-    border-radius: 15px;
+    border-radius: 15px; /* Top left and right corners radiused */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevent child content from spilling over rounded corners */
 }
 
 #header, #footer {
@@ -33,21 +35,20 @@ body {
 
 #sliderContainer {
     display: flex;
-    flex-direction: column;  /* Change to column to stack elements vertically */
-    align-items: center;  /* Center items horizontally */
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     padding: 10px 0;
-}
-
-#yearDisplay {
-    margin-top: 10px;  /* Provide some space above the year display */
-    text-align: center;
+   
+    height: 50px;
 }
 
 #yearRangeSlider {
-    width: 95%;  /* Adjust this value as needed */
-    margin-left: auto;
-    margin-right: auto;
+    width: 95%;
+}
+
+#left{
+
 }
 
 .noUi-handle {
@@ -56,37 +57,34 @@ body {
     box-shadow: none;
 }
 
-/* Connect (track) Color */
 .noUi-connect {
     background: rgb(83, 83, 83);
 }
 
-/* Base background */
 .noUi-target {
     background-color: lightgray;
 }
 
-#footer {
-    /* Adjust height as necessary */
-    height: 50px;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
+.middle-section {
+    flex-grow: 1; /* Make the middle section take all available space */
+    display: flex;
 }
 
-.middle-section .pure-u-1-3 {
-    height: 100%;
-    width: 100%;
-}
-
-#leftTextContainer {
+.middle-section .pure-u-1-4 {
+    flex: 1; /* Take up 1 fraction of the available space */
     background-color: #aaa;
 }
 
-#visualization-container {
+.middle-section .pure-u-2-4 {
+    flex: 2; /* Take up 2 fractions of the available space */
     background-color: #888;
 }
 
-#donut_chart_container {
+.middle-section .pure-u-1-4:last-child {
+    flex: 1; /* Take up 1 fraction of the available space */
     background-color: #666;
+}
+
+#footer {
+    flex-shrink: 0; /* Prevent footer from shrinking */
 }
