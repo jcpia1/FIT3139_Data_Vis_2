@@ -37,15 +37,37 @@ body {
 
 #sliderContainer {
     display: flex;
-    align-items: center;
+    flex-direction: column;  /* Change to column to stack elements vertically */
+    align-items: center;  /* Center items horizontally */
     justify-content: center;
-    padding: 10px 0;  /* Added some padding for better appearance */
+    padding: 10px 0;
+}
+
+#yearDisplay {
+    margin-top: 10px;  /* Provide some space above the year display */
+    text-align: center;
 }
 
 #yearRangeSlider {
-    width: 100%;  /* Adjust this value as needed */
+    width: 95%;  /* Adjust this value as needed */
     margin-left: auto;
     margin-right: auto;
+}
+
+.noUi-handle {
+    background: rgb(160, 0, 0);
+    border: none;
+    box-shadow: none;
+}
+
+/* Connect (track) Color */
+.noUi-connect {
+    background: rgb(83, 83, 83);
+}
+
+/* Base background */
+.noUi-target {
+    background-color: lightgray;
 }
 
 #footer {

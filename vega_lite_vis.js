@@ -31,7 +31,7 @@ Promise.all([fetchMap, fetchDonutChart]).then(([mapSpec, donut_chart]) => {
         start: [1899, 2020],
         range: {
             'min': 1899,
-            'max': 2023
+            'max': 2020
         },
         format: {
             to: function(value) {

@@ -7,23 +7,31 @@
 
 body {
     margin: 0;
-    height: 100vh;
+    height: 100%;
     background-color: gray;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;  /* Aligns the content container to the middle of the page */
+    overflow-y: auto; /* Enable scrolling for the entire body */
 }
 
 #contentContainer {
     display: flex;
     flex-direction: column;
-    height: 95vh; /* Assuming you want it to take the full viewport height */
     width: 95vw;
+    height: 100%;
     align-self: center;
-    border-radius: 15px;
+    border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
     overflow: hidden;
+}
+
+
+.vega-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
 }
 
 #header {
@@ -33,19 +41,6 @@ body {
     text-align: center;
     padding: 1vw 0;
     background-color: rgb(206, 24, 24);
-}
-
-#sliderContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 0;  /* Added some padding for better appearance */
-}
-
-#yearRangeSlider {
-    width: 100%;  /* Adjust this value as needed */
-    margin-left: auto;
-    margin-right: auto;
 }
 
 #footer {
@@ -66,18 +61,18 @@ body {
 }
 
 #visualization-container {
-    flex-grow: 3;  /* Allow it to grow and occupy available space previously occupied by donut chart container */
+    flex-grow: 2;  /* Allow it to grow and occupy available space previously occupied by donut chart container */
     overflow: hidden;  /* Prevent any spillover */
     background-color: #888; /* For visualization purpose */
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 100%;
+    /* width: 100%; <-- Remove this line */
 }
 
 #leftTextContainer {
     flex: 1; /* Adjust this value to set width of this container */
     background-color: #aaa; /* For visualization purpose */
     height: 100%;
-    width: 100%;
+    /* width: 100%; <-- Remove this line */
 }

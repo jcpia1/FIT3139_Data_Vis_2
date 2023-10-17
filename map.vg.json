@@ -1,7 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Australia Base Map with Burned Area",
-  "height": "container",
+  "height": 460,
   "width": "container",
   "params": [
     {
