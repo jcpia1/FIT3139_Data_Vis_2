@@ -11,18 +11,23 @@
         "input": "checkbox",
         "name": "Display Equal Angles"
       }
+    },
+    {
+      "name": "startYear",
+      "value": 1899
+    },
+    {
+      "name": "endYear",
+      "value": 2020
     }
   ],
  "transform": [
     {
-      "lookup": "state",
-      "from": {
-        "data": {
-          "name": "stateAreas"
-        },
-        "key": "state",
-        "fields": ["area_ha"]
-      }
+      "calculate": "year(datum.ignition_date)",
+      "as": "year"
+    },
+    {
+      "filter": "(datum.year >= startYear && datum.year <= endYear)"
     },
     {
       "aggregate": [
@@ -61,9 +66,35 @@
     {
       "calculate": "datum.Total_Area / datum.Total_Fires",
       "as": "Overall_Average_Area"
+    },
+    {
+      "calculate": "equalAngles ? 1 : datum.Number_of_Fires",
+      "as": "Theta_Number_of_Fires"
+    },
+    {
+      "calculate": "equalAngles ? 1 : datum.Area_Burned",
+      "as": "Theta_Area_Burned"
+    },
+    {
+      "calculate": "equalAngles ? 1 : datum.Average_Area_Burned",
+      "as": "Theta_Average_Area_Burned"
+    },
+    {
+      "calculate": "equalAngles ? 1 : datum.Largest_Area_Burned",
+      "as": "Theta_Largest_Area_Burned"
+    },
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "name": "stateAreas"
+        },
+        "key": "state",
+        "fields": ["area_ha"]
+      }
     }
   ],
-"vconcat": [
+"hconcat": [
     {
       "layer": [
         {

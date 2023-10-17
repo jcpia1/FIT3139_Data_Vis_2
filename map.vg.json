@@ -1,6 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Australia Base Map with Burned Area",
+  "height": 400,
+  "width": "container",
   "params": [
     {
       "name": "startYear",
@@ -96,7 +98,8 @@
           "legend": {
             "title": "Total Area Burned (ha)",
             "tickCount": 5,
-            "labelAlign": "center"
+            "labelAlign": "center",
+            "orient": "bottom"
           }
         },
         "tooltip": [

@@ -66,8 +66,6 @@ body {
     flex: 2; /* They will share the remaining width equally */
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
 }
 
 #visualization-container {
@@ -76,4 +74,21 @@ body {
 
 #donut_chart_container {
     background-color: #666; /* For visualization purpose */
+}
+
+.middle-section {
+    flex: 1;
+    display: flex;
+    flex-direction: row; /* This is default, so it's optional */
+}
+
+.right-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+#visualization-container,
+#donut_chart_container {
+    flex: 1; /* They will share the vertical space equally */
 }
