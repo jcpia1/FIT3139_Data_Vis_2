@@ -14,30 +14,24 @@
 
     <!-- CSS file -->
     <link rel="stylesheet" type="text/css" href="css/styles 2.css" media="all">
+
+    <!-- Import Pure CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
 </head>
 
 <body>
-    <div id="contentContainer">
-        <div id="header">
+    <div class="pure-g" id="contentContainer">
+        <div class="pure-u-1" id="header">
             <h1>Historical Bushfires of Australia</h1>
         </div>
 
-        <div class="middle-section">
-            
-            <div id="leftTextContainer">
-                <textarea>"Text"</textarea>
+        <div class="pure-g middle-section">
+            <div class="pure-u-1-4" id="leftTextContainer"></div>
+            <div class="pure-u-2-4" id="visualization-container">
+                <div id="map"></div>
             </div>
-
-            <div id="visualization-container">
-                <div class="visualization1" id="map"></div>
-            </div>            
-            
         </div>
 
-        <div id="footer">
-            <!-- Footer content can be added here -->
-        </div>
+        <div class="pure-u-1" id="footer"></div>
     </div>
-
-</body>
 </html>

@@ -1,4 +1,3 @@
-/* Basic CSS reset for browser consistency */
 * {
     margin: 0;
     padding: 0;
@@ -6,92 +5,50 @@
 }
 
 body {
-    margin: 0;
     height: 100vh;
     background-color: gray;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: center;  /* Aligns the content container to the middle of the page */
 }
 
 #contentContainer {
-    display: flex;
-    flex-direction: column;
-    height: 95vh; /* Assuming you want it to take the full viewport height */
+    height: 95vh;
     width: 95vw;
-    align-self: center;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    margin: 0;
 }
 
-#header {
-    /* Adjust height as necessary */
-    height: 50px;
-    width: 100%;
+#header, #footer {
     text-align: center;
     padding: 1vw 0;
     background-color: rgb(206, 24, 24);
+}
+
+#header h1 {
+    margin: 0;
+    padding: 0.5rem 0;
 }
 
 #sliderContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 0;  /* Added some padding for better appearance */
-}
-
-#yearRangeSlider {
-    width: 100%;  /* Adjust this value as needed */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#footer {
-    /* Adjust height as necessary */
-    height: 50px;
-    width: 100%;
     text-align: center;
-    padding: 1vw 0;
-    background-color: rgb(206, 24, 24);
+    padding: 10px 0;
 }
 
-/* Create a flex container to hold leftTextContainer, visualization-container, and donut_chart_container */
-.middle-section {
-    flex: 1; /* Take up remaining space */
-    display: flex;
+.middle-section .pure-u-1-3 {
     height: 100%;
     width: 100%;
-}
-
-#visualization-container,
-#donut_chart_container {
-    flex-grow: 1;  /* Allow them to grow and occupy available space */
-    overflow: hidden;  /* Prevent any spillover */
 }
 
 #leftTextContainer {
-    flex: 1; /* Adjust this value to set width of this container */
-    background-color: #aaa; /* For visualization purpose */
-    height: 100%;
-    width: 100%;
+    background-color: #aaa;
 }
 
 #visualization-container {
-    background-color: #888; /* For visualization purpose */
-    flex: 2; /* They will share the remaining width equally */
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
+    background-color: #888;
 }
 
 #donut_chart_container {
-    background-color: #666; /* For visualization purpose */
-    flex: 1; /* They will share the remaining width equally */
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
+    background-color: #666;
 }
