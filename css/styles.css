@@ -56,7 +56,7 @@ body {
 .middle-section {
     flex: 1;
     display: flex;
-    background-color: aqua;
+    background-color: rgb(255, 255, 255);
 }
 
 .middle-section .pure-u-1-5 {
@@ -74,14 +74,38 @@ body {
 }
 
 #leftTextContainer {
-    overflow-y: auto;  /* Allows vertical scrolling if content is too long */
-    max-height: 100%;  /* Ensures the container does not expand vertically */
-    padding: 10px;     /* Adds some spacing inside the container */
+    height: 500px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 #leftTextContainer h3 {
-    font-size: 16px;   /* Decreased font size for the heading */
+    font-size: 16px;
     margin-bottom: 10px;
+}
+
+#leftTextContainer ol li {
+    margin-top: 28px;     
+}
+
+
+.stat {
+    display: flex; 
+    justify-content: space-between; 
+    margin-bottom: 5px;
+}
+
+.stat strong {
+    font-size: 14px;
+    margin-right: 5px; 
+}
+
+.stat span {
+    font-size: 12px; 
+    flex: 1; 
+    text-align: right; 
 }
 
 #leftTextContainer p {

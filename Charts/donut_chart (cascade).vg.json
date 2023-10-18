@@ -98,8 +98,8 @@
     {
       "hconcat": [
           {
-            "height": 210,
-            "width": 180,
+            "height": 188,
+            "width": 175,
             "layer": [
               {
                 "title": "Number of Fires",
@@ -116,7 +116,11 @@
                       "domain": ["Australian Capital Territory", "New South Wales", "Northern Territory", "Queensland", "South Australia", "Tasmania", "Victoria", "Western Australia"],
                       "range": ["#0000FF", "#87CEEB", "#993333", "#800000", "#FF0000", "#006A4E", "#000080", "#FFD700"]
                     },
-                    "legend":null
+                    "legend": {
+                      "title": "State",
+                      "orient": "bottom",
+                      "labelExpr": "datum.value === 'Australian Capital Territory' ? 'ACT' : datum.value === 'New South Wales' ? 'NSW' : datum.value === 'Northern Territory' ? 'NT' : datum.value === 'Queensland' ? 'Qld' : datum.value === 'South Australia' ? 'SA' : datum.value === 'Tasmania' ? 'Tas' : datum.value === 'Victoria' ? 'Vic' : datum.value === 'Western Australia' ? 'WA' : datum.value"
+                    }
                   },
                   "tooltip": [
                     {"field": "state", "type": "nominal", "title": "State"},
@@ -157,8 +161,8 @@
             ]
           },
           {
-            "height": 210,
-            "width": 180,
+            "height": 188,
+            "width": 175,
             "layer": [
               {
                 "title": "Area Burned (ha)",
@@ -174,13 +178,12 @@
                     "scale": {
                       "domain": ["Australian Capital Territory", "New South Wales", "Northern Territory", "Queensland", "South Australia", "Tasmania", "Victoria", "Western Australia"],
                       "range": ["#0000FF", "#87CEEB", "#993333", "#800000", "#FF0000", "#006A4E", "#000080", "#FFD700"]
-                    },
-                    "legend":null
+                    }
                   },
                   "tooltip": [
                     {"field": "state", "type": "nominal", "title": "State"},
                     {"field": "Area_Burned", "type": "quantitative", "title": "Area Burned (ha)", "format": ",.0f"},
-                    {"field": "Normalized_Total_Area", "type": "quantitative", "title": "Area Burned (%)", "format": ".2%"}
+                    {"field": "Normalized_Total_Area", "type": "quantitative", "title": "% of Burned Area", "format": ".2%"}
                   ]
                 }
               },
@@ -220,8 +223,8 @@
     {
       "hconcat": [
           {
-            "height": 210,
-            "width": 180,
+            "height": 188,
+            "width": 175,
             "layer": [
               {
                 "title": "Average Area Burned (ha)",
@@ -237,8 +240,7 @@
                     "scale": {
                       "domain": ["Australian Capital Territory", "New South Wales", "Northern Territory", "Queensland", "South Australia", "Tasmania", "Victoria", "Western Australia"],
                       "range": ["#0000FF", "#87CEEB", "#993333", "#800000", "#FF0000", "#006A4E", "#000080", "#FFD700"]
-                    },
-                    "legend":null
+                    }
                   },
                   "tooltip": [
                     {"field": "state", "type": "nominal", "title": "State"},
@@ -280,8 +282,8 @@
             ]
           },
           {
-            "height": 210,
-            "width": 180,
+            "height": 188,
+            "width": 175,
             "layer": [
               {
                 "title": "Largest Area Burned (ha)",
@@ -297,10 +299,6 @@
                     "scale": {
                       "domain": ["Australian Capital Territory", "New South Wales", "Northern Territory", "Queensland", "South Australia", "Tasmania", "Victoria", "Western Australia"],
                       "range": ["#0000FF", "#87CEEB", "#993333", "#800000", "#FF0000", "#006A4E", "#000080", "#FFD700"]
-                    },
-                    "legend": {
-                      "title": "State",
-                      "orient": "bottom"
                     }
                   },
                   "tooltip": [

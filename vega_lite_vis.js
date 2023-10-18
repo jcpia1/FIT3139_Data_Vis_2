@@ -61,13 +61,3 @@ Promise.all([fetchMap, fetchDonutChart]).then(([mapSpec, donut_chart]) => {
         }
     });
 }).catch(console.error);    
-
-window.addEventListener('resize', () => {
-    if (mapView) {
-        mapView.resize().run();
-    }
-    if (donutView) {
-        donutView.resize().run();
-    }
-});
-

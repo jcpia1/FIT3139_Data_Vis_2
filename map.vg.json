@@ -104,8 +104,8 @@
         },
         "tooltip": [
           {"field": "state", "type": "nominal", "title": "State"},
-          {"field": "Area_Burned", "type": "quantitative", "title": "Total Area Burned (ha)", "format": ",.0f"},
-          {"field": "Normalized_Total_Area", "type": "quantitative", "title": "% of Total Burned Area", "format": ".2%"}
+          {"field": "Area_Burned", "type": "quantitative", "title": "Area Burned (ha)", "format": ",.0f"},
+          {"field": "Normalized_Total_Area", "type": "quantitative", "title": "% of Burned Area", "format": ".2%"}
         ]
       }
     }
