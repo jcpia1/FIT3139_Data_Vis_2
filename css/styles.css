@@ -8,8 +8,7 @@
 body {
     margin: 0;
     height: 100vh;
-    background-color: rgb(228, 226, 226);
-    display: flex;
+    background-color: black;
     justify-content: center;
     align-items: center;
 }
@@ -28,29 +27,27 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#header, #footer {
+#header{
     height: 60px;
     text-align: center;
     padding: 1vw 0;
     background-color: rgb(206, 24, 24);
+    display: flex;
+    justify-content: center;
 }
+
+#footer {
+    height: 50px;
+    text-align: center;
+    padding: 1vw 0;
+    background-color: rgb(206, 24, 24);
+
+}
+
 
 #header h1 {
     margin: 0;
     padding: 0.5rem 0;
-}
-
-#sliderContainer {
-    height: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 0;
-}
-
-#yearRangeSlider {
-    width: 95%;
 }
 
 .middle-section {
@@ -125,7 +122,20 @@ body {
     flex-direction: column;
 }
 
-/* Styles for the noUiSlider */
+#sliderContainer {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    background-color: lightgray
+}
+
+#yearRangeSlider {
+    width: 95%;
+}
+
 .noUi-handle {
     background: rgb(160, 0, 0);
     border: none;
@@ -133,9 +143,18 @@ body {
 }
 
 .noUi-connect {
-    background: transparent;
+    background: #a50f15;
 }
 
 .noUi-target {
-    background-color: lightgray;
+    background-color: #dae3e4;
 }
+
+.noUi-tooltip {
+    display: none;
+}
+
+.noUi-handle:hover .noUi-tooltip {
+    display: block;
+}
+

@@ -1,0 +1,54 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/jcpia1/FIT3139_Data_Vis_2/main/Data/Historical_Bushfire_Boundaries.csv"
+    },
+    "params": [
+      {
+        "name": "startYear",
+        "value": 1899
+      },
+      {
+        "name": "endYear",
+        "value": 2022
+      }
+    ],
+    "transform": [
+      {
+        "calculate": "year(datum.ignition_date)",
+        "as": "year"
+      },
+      {
+        "filter": "(datum.year >= startYear && datum.year <= endYear)"
+      },
+      {
+        "aggregate": [
+          {"op": "count", "as": "Number_of_Fires"},
+          {"op": "sum", "field": "area_ha", "as": "Area_Burned"}
+        ],
+        "groupby": ["state"]
+      }
+    ],
+    "mark": "bar",
+    "encoding": {
+      "x": {"field": "state", "type": "nominal", "title": "State"},
+      "y": {"field": "Number_of_Fires", "type": "quantitative", "title": "Number of Fires"},
+      "color": {
+        "field": "state",
+        "type": "nominal",
+        "scale": {
+          "domain": ["Australian Capital Territory", "New South Wales", "Northern Territory", "Queensland", "South Australia", "Tasmania", "Victoria", "Western Australia"],
+          "range": ["#0000FF", "#87CEEB", "#993333", "#800000", "#FF0000", "#006A4E", "#000080", "#FFD700"]
+        },
+        "legend": {
+          "title": "State",
+          "orient": "bottom",
+          "labelExpr": "datum.value === 'Australian Capital Territory' ? 'ACT' : datum.value === 'New South Wales' ? 'NSW' : datum.value === 'Northern Territory' ? 'NT' : datum.value === 'Queensland' ? 'Qld' : datum.value === 'South Australia' ? 'SA' : datum.value === 'Tasmania' ? 'Tas' : datum.value === 'Victoria' ? 'Vic' : datum.value === 'Western Australia' ? 'WA' : datum.value"
+        }
+      }
+    },
+    "config": {
+      "view": {"stroke": null}
+    }
+  }
+  

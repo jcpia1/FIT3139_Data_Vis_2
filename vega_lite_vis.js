@@ -28,10 +28,10 @@ Promise.all([fetchMap, fetchDonutChart]).then(([mapSpec, donut_chart]) => {
     // Initialize the noUiSlider
     var slider = document.getElementById('yearRangeSlider');
     noUiSlider.create(slider, {
-        start: [1899, 2020],
+        start: [1899, 2022],
         range: {
             'min': 1899,
-            'max': 2020
+            'max': 2022
         },
         format: {
             to: function(value) {
