@@ -1,3 +1,4 @@
+/* Reset styles */
 * {
     margin: 0;
     padding: 0;
@@ -5,24 +6,30 @@
 }
 
 body {
+    margin: 0;
     height: 100vh;
-    background-color: gray;
+    background-color: rgb(228, 226, 226);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #contentContainer {
-    height: 95vh;
-    width: 95vw;
-    border-radius: 15px; /* Top left and right corners radiused */
+    height: 680px;
+    width: 1500px;
+    border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: auto;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* Prevent child content from spilling over rounded corners */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #header, #footer {
+    height: 60px;
     text-align: center;
     padding: 1vw 0;
     background-color: rgb(206, 24, 24);
@@ -34,23 +41,67 @@ body {
 }
 
 #sliderContainer {
+    height: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 10px 0;
-   
-    height: 50px;
 }
 
 #yearRangeSlider {
     width: 95%;
 }
 
-#left{
-
+.middle-section {
+    flex: 1;
+    display: flex;
+    background-color: aqua;
 }
 
+.middle-section .pure-u-1-5 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.middle-section .pure-u-3-5 {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+#leftTextContainer {
+    overflow-y: auto;  /* Allows vertical scrolling if content is too long */
+    max-height: 100%;  /* Ensures the container does not expand vertically */
+    padding: 10px;     /* Adds some spacing inside the container */
+}
+
+#leftTextContainer h3 {
+    font-size: 16px;   /* Decreased font size for the heading */
+    margin-bottom: 10px;
+}
+
+#leftTextContainer p {
+    font-size: 12px;   /* Decreased font size for the content */
+    margin-bottom: 5px;
+}
+
+#visualization-container, #donut_chart_container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#map, #donut_chart {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styles for the noUiSlider */
 .noUi-handle {
     background: rgb(160, 0, 0);
     border: none;
@@ -58,33 +109,9 @@ body {
 }
 
 .noUi-connect {
-    background: rgb(83, 83, 83);
+    background: transparent;
 }
 
 .noUi-target {
     background-color: lightgray;
-}
-
-.middle-section {
-    flex-grow: 1; /* Make the middle section take all available space */
-    display: flex;
-}
-
-.middle-section .pure-u-1-4 {
-    flex: 1; /* Take up 1 fraction of the available space */
-    background-color: #aaa;
-}
-
-.middle-section .pure-u-2-4 {
-    flex: 2; /* Take up 2 fractions of the available space */
-    background-color: #888;
-}
-
-.middle-section .pure-u-1-4:last-child {
-    flex: 1; /* Take up 1 fraction of the available space */
-    background-color: #666;
-}
-
-#footer {
-    flex-shrink: 0; /* Prevent footer from shrinking */
 }

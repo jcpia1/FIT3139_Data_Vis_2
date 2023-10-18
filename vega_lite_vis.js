@@ -6,7 +6,7 @@ let donutView;
 const fetchMap = fetch('map.vg.json').then(response => response.json());
 
 // Fetch the donut_chart spec
-const fetchDonutChart = fetch('donut_chart.vg.json').then(response => response.json());
+const fetchDonutChart = fetch('Charts/donut_chart (cascade).vg.json').then(response => response.json());
 
 // Once both fetches are complete
 Promise.all([fetchMap, fetchDonutChart]).then(([mapSpec, donut_chart]) => {
@@ -60,4 +60,14 @@ Promise.all([fetchMap, fetchDonutChart]).then(([mapSpec, donut_chart]) => {
             donutView.signal('startYear', startYear).signal('endYear', endYear).run();
         }
     });
-}).catch(console.error);
+}).catch(console.error);    
+
+window.addEventListener('resize', () => {
+    if (mapView) {
+        mapView.resize().run();
+    }
+    if (donutView) {
+        donutView.resize().run();
+    }
+});
+

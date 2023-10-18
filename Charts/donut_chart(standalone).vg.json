@@ -96,8 +96,6 @@
   ],
 "vconcat": [
     {
-      "width": "container",
-      "height": "container",
       "layer": [
         {
           "title": "Number of Fires",
@@ -111,11 +109,10 @@
               "field": "state",
               "type": "nominal",
               "scale": {
-                "domain": ["Australian Capital Territory", "New South Wales", "Northern Territory", "Queensland", "South Australia", "Tasmania", "Victoria", "Western Australia"],
+                "domain": ["ACT", "NSW", "NT", "Qld", "SA", "Tas", "Vic", "WA"],
                 "range": ["#0000FF", "#87CEEB", "#993333", "#800000", "#FF0000", "#006A4E", "#000080", "#FFD700"]
               },
-              "legend": {
-                "title": "State"}
+              "legend": {"title": "State"}
             },
             "tooltip": [
               {"field": "state", "type": "nominal", "title": "State"},
@@ -156,8 +153,6 @@
       ]
     },
     {
-      "width": "container",
-      "height": "container",
       "layer": [
         {
           "title": "Area Burned (ha)",
@@ -210,8 +205,6 @@
       ]
     },
     {
-      "width": "container",
-      "height": "container",
       "layer": [
         {
           "title": "Average Area Burned (ha)",
@@ -265,8 +258,6 @@
       ]
     },
     {
-      "width": "container",
-      "height": "container",
       "layer": [
         {
           "title": "Largest Area Burned (ha)",

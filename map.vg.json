@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "height": 400,
-  "width": "container",
+  "height": 430,
+  "width": 700,
   "params": [
     {
       "name": "startYear",
@@ -97,6 +97,7 @@
           "legend": {
             "title": "Total Area Burned (ha)",
             "tickCount": 5,
+            "gradientLength": 690,
             "labelAlign": "center",
             "orient": "bottom"
           }
@@ -108,5 +109,11 @@
         ]
       }
     }
-  ]
+  ],
+  "config": {
+    "view": {
+        "stroke": "transparent"
+    }
+}
+
 }
