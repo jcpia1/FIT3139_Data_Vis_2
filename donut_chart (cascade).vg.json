@@ -5,20 +5,20 @@
   },
   "params": [
     {
-      "name": "equalAngles",
-      "value": false,
-      "bind": {
-        "input": "checkbox",
-        "name": "Display Equal Angles"
-      }
-    },
-    {
       "name": "startYear",
       "value": 1899
     },
     {
       "name": "endYear",
       "value": 2022
+    },
+    {
+      "name": "equalAngles",
+      "value": false,
+      "bind": {
+        "input": "checkbox",
+        "name": "Display Equal Angles"
+      }
     }
   ],
  "transform": [
